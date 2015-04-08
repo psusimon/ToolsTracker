@@ -2,14 +2,9 @@ package toolstracker
 
 class Role {
 
-	String authority
-
-	static mapping = {
-		cache true
-	}
-
-	static constraints = {
-		authority blank: false, unique: true
-	}
+	String description;
+	
+    static constraints = {
+		description(nullable: true, blank: false)
+    }
 }
-

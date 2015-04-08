@@ -3,7 +3,7 @@ package toolstracker
 class ClientSite {
 	
 	Region region
-	
+
     static constraints = { 
     }
 	
