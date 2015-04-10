@@ -4,6 +4,7 @@ class ToolAdminCenter {
 	
 	User contactUser
 	Region region
+	String description
 	
     static constraints = {
 		contactUser(nullable: false, blank: false)
