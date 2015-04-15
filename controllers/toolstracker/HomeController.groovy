@@ -4,6 +4,8 @@ class HomeController {
 
     def index() { 
 		def toolsList = Tool.list();
-		render(view: "home", model: toolsList)
+		def toolsListSE = Tool.findById(1);
+		// def toolsListSE = Tool.findByTac();
+		render(view: "home", model: [toolsList: toolsList, toolsListSE: toolsListSE])
 	}
 }

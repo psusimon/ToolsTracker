@@ -16,6 +16,7 @@ class Tool {
 		description(nullable: true, blank: true)
 		currentStatus(nullable: true, blank: true)
 		maintenanceHistory(nullable: true, blank: true)
+		maintenanceSchedule(nullable: true, blank: true)
     }
 	
 	static hasOne = {

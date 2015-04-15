@@ -81,6 +81,23 @@
              </g:each>
             </tbody>
           </table>
+          
+		<table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Tool Model</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+            <g:each in="${toolsListSE}">
+	            <tr>
+	              <td>${it.lookupNumber}</td>
+	       		  <td>${it.description}</td>
+	            </tr>
+             </g:each>
+            </tbody>
+          </table>
 
     </div> <!-- /container -->
 
