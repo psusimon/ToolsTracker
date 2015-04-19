@@ -64,70 +64,114 @@
 			</div>
 			<div class="panel-body">
 				<div class="panel-body form-horizontal payment-form">
-                    <div class="form-group">
-                        <label for="concept" class="col-sm-3 control-label">Tool Name</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="description" name="description">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="description" class="col-sm-3 control-label">Tool Number</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="lookupNumber" name="lookupNumber">
-                        </div>
-                    </div> 
-                    <div class="form-group">
-                       	<label for="region" class="col-sm-3 control-label">Region</label>
-                        <div class="col-sm-9">
-                            <select class="form-control" id="region" name="region">
-                                <option>Any</option>
-                                <option>NE US</option>
-                                <option>SE US</option>
-                                <option>W EU</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="status" class="col-sm-3 control-label">Status</label>
-                        <div class="col-sm-9">
-                            <select class="form-control" id="status" name="status">
-                                <option>Available</option>
-                                <option>Unavailable</option>
-                            </select>
-                        </div>
-                    </div> 
-                    <div class="form-group">
-                        <label for="date" class="col-sm-3 control-label">Date</label>
-                        <div class="col-sm-9">
-                            <input type="date" class="form-control" id="date" name="date">
-                        </div>
-                    </div>   
-                    <div class="form-group">
-                        <div class="col-sm-12 text-right">
-                            <button type="button" class="btn btn-default preview-add-button">
-                                <span class="glyphicon glyphicon-filter"></span> Filter
-                            </button>
-                        </div>
-                    </div>
-                </div>
+					<div class="form-group">
+						<label for="concept" class="col-sm-3 control-label">Tool
+							Name</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="description"
+								name="description">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="description" class="col-sm-3 control-label">Tool
+							Number</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="lookupNumber"
+								name="lookupNumber">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="region" class="col-sm-3 control-label">Region</label>
+						<div class="col-sm-9">
+							<select class="form-control" id="region" name="region">
+								<option>Any</option>
+								<option>NE US</option>
+								<option>SE US</option>
+								<option>W EU</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="status" class="col-sm-3 control-label">Status</label>
+						<div class="col-sm-9">
+							<select class="form-control" id="status" name="status">
+								<option>Available</option>
+								<option>Unavailable</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="date" class="col-sm-3 control-label">Date</label>
+						<div class="col-sm-9">
+							<input type="date" class="form-control" id="date" name="date">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-12 text-right">
+							<button type="button" class="btn btn-default preview-add-button">
+								Filter
+							</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>Tool Model</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody>
-						<g:each in="${toolsList}">
-							<tr>
-								<td>${it.lookupNumber}</td>
-								<td>${it.description}</td>
-							</tr>
-						</g:each>
-					</tbody>
-				</table>
+			<thead>
+				<tr>
+					<th>Model</th>
+					<th>Description</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<g:each in="${toolsList}">
+					<tr>
+						<td>
+							${it.lookupNumber}
+						</td>
+						<td>
+							${it.description}
+						</td>
+						<td>
+						<g:if test="${it.currentStatus == 'Available'}">
+							<button type="button" class="btn btn-sm btn-success"
+								data-toggle="modal" data-target="#myModal">Details
+							</button>
+						</g:if>
+						<g:else> 
+							<button type="button" class="btn btn-sm btn-danger"
+								data-toggle="modal" data-target="#myModal">Details
+							</button>
+						</g:else>
+						</td>
+					</tr>
+				</g:each>
+			</tbody>
+		</table>
+
+		<!-- Modal  -->
+
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">×</button>
+						<h4 class="modal-title" id="myModalLabel">Tool Details</h4>
+					</div>
+					<div class="modal-body">
+						<div class="tab-content">
+							<div id="sectionA" class="tab-pane fade in active">
+								<g:render template="toolDetailTemplate" />
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer"></div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<!-- /container -->
 
