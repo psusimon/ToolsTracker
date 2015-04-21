@@ -20,6 +20,6 @@ class Tool {
     }
 	
 	static hasOne = {
-		[tac: ToolAdminCenter, currentReservation: Reservation, nextReservation: Reservation, maintenanceSchedule: MaintenanceSchedule ]
+		[tac: ToolAdminCenter, currentReservation: Reservation, nextReservation: Reservation, maintenanceSchedule: MaintenanceSchedule]
 	}
 }

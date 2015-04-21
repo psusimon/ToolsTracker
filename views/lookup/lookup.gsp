@@ -17,6 +17,8 @@
 <!-- Custom styles for this template -->
 <link href="../css/navbar-fixed-top.css" rel="stylesheet">
 
+<link href="../css/lookup.css" rel="stylesheet">
+
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -57,19 +59,25 @@
 	<div class="container">
 
 		<!-- Main component for a primary marketing message or call to action -->
-
+		<g:if test="${searchSuccess}">
+			<div class="alert alert-info" role="alert">
+	        	Found <strong>${toolsList.size}</strong> results.
+	      	</div>
+		</g:if>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Search Options</h3>
+				<span class="pull-right clickable"><a href="#">Show/Hide</a></span>
 			</div>
 			<div class="panel-body">
 				<div class="panel-body form-horizontal payment-form">
+					<g:form name="filter" action="processFilter">
 					<div class="form-group">
 						<label for="concept" class="col-sm-3 control-label">Tool
 							Name</label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="description"
-								name="description">
+								name="description" value="${description}">
 						</div>
 					</div>
 					<div class="form-group">
@@ -77,101 +85,128 @@
 							Number</label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="lookupNumber"
-								name="lookupNumber">
+								name="lookupNumber" value="${lookupNumber}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="region" class="col-sm-3 control-label">Region</label>
 						<div class="col-sm-9">
-							<select class="form-control" id="region" name="region">
-								<option>Any</option>
-								<option>NE US</option>
-								<option>SE US</option>
-								<option>W EU</option>
-							</select>
+							<g:if test="${region == 'Any'}">
+								<select class="form-control" id="region" name="region">
+									<option selected="selected">Any</option>
+									<option>NE US</option>
+									<option>SE US</option>
+									<option>W EU</option>
+								</select>
+							</g:if>
+							<g:if test="${region == 'NE US'}">
+								<select class="form-control" id="region" name="region">
+									<option>Any</option>
+									<option selected="selected">NE US</option>
+									<option>SE US</option>
+									<option>W EU</option>
+								</select>
+							</g:if>
+							<g:if test="${region == 'SE US'}">
+								<select class="form-control" id="region" name="region">
+									<option>Any</option>
+									<option>NE US</option>
+									<option selected="selected">SE US</option>
+									<option>W EU</option>
+								</select>
+							</g:if>
+							<g:if test="${region == 'W EU'}">
+								<select class="form-control" id="region" name="region">
+									<option>Any</option>
+									<option>NE US</option>
+									<option>SE US</option>
+									<option selected="selected">W EU</option>
+								</select>
+							</g:if>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="status" class="col-sm-3 control-label">Status</label>
 						<div class="col-sm-9">
-							<select class="form-control" id="status" name="status">
-								<option>Available</option>
-								<option>Unavailable</option>
-							</select>
+							<g:if test="${status == 'All'}">
+								<select class="form-control" id="status" name="status">
+									<option selected="selected">All</option>
+									<option>Only Available</option>
+									<option>Only Unavailable</option>
+								</select>
+							</g:if>
+							<g:if test="${status == 'Only Available'}">
+								<select class="form-control" id="status" name="status">
+									<option>All</option>
+									<option selected="selected">Only Available</option>
+									<option>Only Unavailable</option>
+								</select>
+							</g:if>
+							<g:if test="${status == 'Only Unavailable'}">
+								<select class="form-control" id="status" name="status">
+									<option>All</option>
+									<option>Only Available</option>
+									<option selected="selected">Only Unavailable</option>
+								</select>
+							</g:if>
 						</div>
 					</div>
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label for="date" class="col-sm-3 control-label">Date</label>
 						<div class="col-sm-9">
 							<input type="date" class="form-control" id="date" name="date">
 						</div>
-					</div>
+					</div> -->
 					<div class="form-group">
 						<div class="col-sm-12 text-right">
-							<button type="button" class="btn btn-default preview-add-button">
+							<button type="submit" value="Submit" class="btn btn-default preview-add-button">
 								Filter
 							</button>
 						</div>
 					</div>
+					</g:form>
 				</div>
 			</div>
 		</div>
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<th>Region</th>
 					<th>Model</th>
 					<th>Description</th>
 					<th></th>
 				</tr>
 			</thead>
 			<tbody>
-				<g:each in="${toolsList}">
-					<tr>
-						<td>
-							${it.lookupNumber}
-						</td>
-						<td>
-							${it.description}
-						</td>
-						<td>
-						<g:if test="${it.currentStatus == 'Available'}">
-							<button type="button" class="btn btn-sm btn-success"
-								data-toggle="modal" data-target="#myModal">Details
-							</button>
-						</g:if>
-						<g:else> 
-							<button type="button" class="btn btn-sm btn-danger"
-								data-toggle="modal" data-target="#myModal">Details
-							</button>
-						</g:else>
-						</td>
-					</tr>
-				</g:each>
+				<g:render template="toolListTemplate" bean="${toolsList}" />
 			</tbody>
 		</table>
 
 		<!-- Modal  -->
 
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-			aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">×</button>
-						<h4 class="modal-title" id="myModalLabel">Tool Details</h4>
-					</div>
-					<div class="modal-body">
-						<div class="tab-content">
-							<div id="sectionA" class="tab-pane fade in active">
-								<g:render template="toolDetailTemplate" />
+		
+		<g:each var="tool" in="${toolsList}" status="i">
+			<div class="modal fade" id="myModal${i}" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">×</button>
+							<h4 class="modal-title" id="myModalLabel">Tool Details</h4>
+						</div>
+						<div class="modal-body">
+							<div class="tab-content">
+								<div id="sectionA" class="tab-pane fade in active">
+									<g:render template="toolDetailTemplate" bean="${tool}" />
+								</div>
 							</div>
 						</div>
+						<div class="modal-footer"></div>
 					</div>
-					<div class="modal-footer"></div>
 				</div>
 			</div>
-		</div>
+		</g:each>
 	</div>
 	<!-- /container -->
 
@@ -182,6 +217,7 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/lookup.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script src="../js/ie10-viewport-bug-workaround.js"></script>
 </body>
