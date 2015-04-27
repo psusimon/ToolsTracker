@@ -139,13 +139,13 @@
 					<div class="form-group">
 						<label for="date" class="col-sm-3 control-label">Deployment Date</label>
 						<div class="col-sm-9">
-							<input type="date" class="form-control" id="deploymentDate" name="deploymentDate">
+							<input type="date" class="form-control" id="newDeploymentDate" name="newDeploymentDate">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="date" class="col-sm-3 control-label">Return Date</label>
 						<div class="col-sm-9">
-							<input type="date" class="form-control" id="returnDate" name="returnDate">
+							<input type="date" class="form-control" id="newReturnDate" name="newReturnDate">
 						</div>
 					</div>
 					<div class="form-group">

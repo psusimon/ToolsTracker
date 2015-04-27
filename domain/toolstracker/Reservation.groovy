@@ -12,7 +12,7 @@ class Reservation {
 
     static constraints = {
 		deploymentDate(nullable: false, blank: false)
-		duebackDate(nullable: false, blank: false)	
+		duebackDate(nullable: false, blank: false)
     }
 	
 	static hasOne = {
