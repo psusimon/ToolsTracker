@@ -69,7 +69,7 @@ class LookupController {
 			}
 		} else {
 			for (Tool currentTool : t) {
-				if (currentTool.currentStatus.equalsIgnoreCase("Unavailable")) {
+				if (currentTool.currentStatus.equalsIgnoreCase("In Use") || currentTool.currentStatus.equalsIgnoreCase("Out For Repair")) {
 					filteredList.add(currentTool)
 				}
 			}

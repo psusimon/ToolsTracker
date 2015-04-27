@@ -44,9 +44,10 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="#">Home</a></li>
-					<li class="active"><a href="#about">Tool Lookup</a></li>
-					<li><a href="#about">Settings</a></li>
+					<li><g:link controller="home" action="index">Home</g:link></li>
+					<li class="active"><g:link controller="lookup" action="index">Tool Lookup</g:link></li>
+					<li><g:link controller="manager" action="index">Tool Manager</g:link></li>
+					<li><a href="#">Settings</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#">Log Out</a></li>

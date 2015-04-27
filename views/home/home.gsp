@@ -40,9 +40,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">Tool Lookup</a></li>
-            <li><a href="#about">Settings</a></li>
+            <li class="active"><g:link controller="home" action="index">Home</g:link></li>
+			<li><g:link controller="lookup" action="index">Tool Lookup</g:link></li>
+			<li><g:link controller="manager" action="index">Tool Manager</g:link></li>
+			<li><a href="#">Settings</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Log Out</a></li>
@@ -64,41 +65,6 @@
           <a class="btn btn-lg btn-primary" href="#" role="button">This is a Button bruh</a>
         </p>
       </div>
-      
-      <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Tool Model</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-            <g:each in="${toolsList}">
-	            <tr>
-	              <td>${it.lookupNumber}</td>
-	       		  <td>${it.description}</td>
-	            </tr>
-             </g:each>
-            </tbody>
-          </table>
-          
-		<table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Tool Model</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-            <g:each in="${toolsListSE}">
-	            <tr>
-	              <td>${it.lookupNumber}</td>
-	       		  <td>${it.description}</td>
-	            </tr>
-             </g:each>
-            </tbody>
-          </table>
-
     </div> <!-- /container -->
 
 
