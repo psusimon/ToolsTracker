@@ -58,6 +58,11 @@
 	</nav>
 
 	<div class="container">
+		<g:if test="${updateSuccess}">
+			<div class="alert alert-success" role="alert">
+	        	Tool successfully updated.
+	      	</div>
+		</g:if>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Tool Details</h3>
@@ -97,13 +102,38 @@
 								</td>
 							</tr>
 						</g:if>
+						<g:if test="${currentTool.maintenanceHistory}">
+							<tr>
+								<td class="details-header-cell">Maintenance History:</td>
+								<td class="details-content-cell">
+									${currentTool.maintenanceHistory}
+								</td>
+							</tr>
+						</g:if>
+						<g:if test="${currentTool.maintenanceSchedule}">
+							<tr>
+								<td class="details-header-cell">Maintenance Schedule:</td>
+								<td class="details-content-cell">
+									${currentTool.maintenanceSchedule.scheduleFrequency}
+								</td>
+							</tr>
+						</g:if>
 					</tbody>
 				</table>
+				<g:form name="delete" action="deleteTool">
+					<div class="form-group">
+						<div class="col-sm-12 text-right">
+							<button type="submit" value="Submit"
+								class="btn btn-danger">Delete Tool</button>
+						</div>
+					</div>
+				</g:form>
 			</div>
+
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Update Details/h3>
+				<h3 class="panel-title">Update Details</h3>
 			</div>
 			<div class="panel-body">
 				<div class="panel-body form-horizontal payment-form">
@@ -113,7 +143,7 @@
 								Name</label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="toolName"
-									name="toolName" value="${currentTool.lookupNumber}">
+									name="toolName" value="${currentTool.description}">
 							</div>
 						</div>
 						<div class="form-group">
@@ -129,7 +159,7 @@
 								History</label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="maintenanceHistory"
-									name="maintenanceHistory" value="${currentTool.lookupNumber}">
+									name="maintenanceHistory" value="${currentTool.maintenanceHistory}">
 							</div>
 						</div>
 						<div class="form-group">
@@ -150,7 +180,7 @@
 						<div class="form-group">
 							<div class="col-sm-12 text-right">
 								<button type="submit" value="Submit"
-									class="btn btn-default preview-add-button">Update</button>
+									class="btn btn-success">Update</button>
 							</div>
 						</div>
 					</g:form>

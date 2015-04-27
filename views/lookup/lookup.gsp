@@ -65,6 +65,16 @@
 	        	Found <strong>${toolsList.size}</strong> results.
 	      	</div>
 		</g:if>
+		<g:if test="${deleteSuccess}">
+			<div class="alert alert-info" role="alert">
+	        	Tool successfully deleted.
+	      	</div>
+		</g:if>
+		<g:if test="${updateSuccess}">
+			<div class="alert alert-info" role="alert">
+	        	Tool successfully updated.
+	      	</div>
+		</g:if>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Search Options</h3>
@@ -160,7 +170,7 @@
 					</div> -->
 					<div class="form-group">
 						<div class="col-sm-12 text-right">
-							<button type="submit" value="Submit" class="btn btn-default preview-add-button">
+							<button type="submit" value="Submit" class="btn btn-primary">
 								Filter
 							</button>
 						</div>

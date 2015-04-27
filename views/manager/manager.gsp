@@ -111,7 +111,7 @@
 						<div class="form-group">
 							<div class="col-sm-12 text-right">
 								<button type="submit" value="Submit"
-									class="btn btn-default preview-add-button">Add Tool
+									class="btn btn-success">Add Tool
 								</button>
 							</div>
 						</div>

@@ -35,7 +35,12 @@ class UpdateController {
 			}
 		}
 		
-		def maintenanceSchedOptions = MaintenanceSchedule.list();
-		render(view:"manager", model:[maintenanceSchedule: maintenanceSchedOptions, addSuccess: true])
+		redirect(controller: "lookup", action: "index", updateSuccess: true)
+	}
+	
+	def deleteTool() {
+		currentTool.delete(flush:true)
+		
+		redirect(controller: "lookup", action: "index", deleteSuccess: true)
 	}
 }

@@ -34,7 +34,7 @@
 	<g:link controller="reservation" action="index" id="${it.id}">
 		<button type="button" class="btn btn-lg btn-success">Reserve Tool</button>
 	</g:link>
-	<g:link controller="reservation" action="index" id="${it.id}">
-		<button type="button" class="btn btn-lg btn-success">Update Tool</button>
+	<g:link controller="update" action="index" id="${it.id}">
+		<button type="button" class="btn btn-lg btn-primary">Update Tool</button>
 	</g:link>
 </div>
